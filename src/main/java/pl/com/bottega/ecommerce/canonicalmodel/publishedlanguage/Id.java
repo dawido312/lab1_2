@@ -26,24 +26,22 @@ public class Id implements Serializable {
         this.value = id;
     }
 
-    protected Id() {}
+    protected Id() {
+    }
 
     public static Id generate() {
-        return new Id(UUID.randomUUID()
-                          .toString());
+        return new Id(UUID.randomUUID().toString());
     }
 
     public String getId() {
         return value;
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return value.hashCode();
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Override public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -64,8 +62,7 @@ public class Id implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return value;
     }
 }

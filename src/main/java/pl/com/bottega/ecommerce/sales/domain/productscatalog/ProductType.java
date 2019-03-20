@@ -13,8 +13,6 @@
 package pl.com.bottega.ecommerce.sales.domain.productscatalog;
 
 public enum ProductType {
-    DRUG,
-    FOOD,
-    STANDARD
+    DRUG, FOOD, STANDARD
 
 }

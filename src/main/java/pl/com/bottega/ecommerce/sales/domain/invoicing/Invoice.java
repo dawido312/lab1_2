@@ -32,6 +32,10 @@ public class Invoice {
 
     private Id id;
 
+    static Invoice create(Id invoiceId, ClientData client) {
+        return new Invoice(invoiceId, client);
+    }
+
     Invoice(Id invoiceId, ClientData client) {
         this.id = invoiceId;
         this.client = client;
@@ -49,7 +53,6 @@ public class Invoice {
     }
 
     /**
-     *
      * @return immutable projection
      */
     public List<InvoiceLine> getItems() {
