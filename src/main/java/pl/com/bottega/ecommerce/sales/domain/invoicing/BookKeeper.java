@@ -19,13 +19,16 @@ import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
-public class BookKeeper implements TaxCalculator {
+public class BookKeeper {
 
-    public Invoice issuance(InvoiceRequest IR) {
-        Invoice invoice = Invoice.create(Id.generate(), IR.getClient());
+    public Invoice issuance(InvoiceRequest ir, TaxCalculator tc) {
+        Invoice invoice = Invoice.create(Id.generate(), ir.getClient());
 
-        for (RequestItem item : IR.getItems()) {
-            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), item.getTotalCost(), calculate(item));
+        for (RequestItem item : ir.getItems()) {
+
+            Tax tax = tc.calculate(item);
+
+            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), item.getTotalCost(), tax);
             invoice.addItem(invoiceLine);
         }
 
