@@ -31,9 +31,22 @@ public class MoneyTest {
         money2.add(money3);
     }
 
-    @Test(expected = NullPointerException.class) public void additionWithNull()
+    @Test(expected = NullPointerException.class) public void additionWithNullTest()
     {
         money.add(null);
+    }
+
+    @Test(expected=IllegalArgumentException.class)public void subtractionTest()
+    {
+        Assert.assertThat("10.00 zł", is(money2.subtract(money).toString()));
+        Assert.assertThat("-10.00 zł", is(money.subtract(money2).toString()));
+        money.subtract(money3);
+
+    }
+
+    @Test(expected = NullPointerException.class)public void subtractionWithNull()
+    {
+        money.subtract(null);
     }
 
 
