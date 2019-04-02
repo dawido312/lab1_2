@@ -20,14 +20,14 @@ public class MoneyTest {
     @Test public void multiplyByTest()
     {
         Money tmp = money.multiplyBy(3d);
-        Assert.assertThat("30.00 zł", is(tmp.toString()));
+        Assert.assertThat(tmp.toString(), is("30.00 zł"));
         tmp.multiplyBy(-3d);
-        Assert.assertThat("30.00 zł", is(tmp.toString()));
+        Assert.assertThat(tmp.toString(), is("30.00 zł"));
     }
 
     @Test(expected = IllegalArgumentException.class) public void additionTest()
     {
-        Assert.assertThat("30.00 zł", is(money.add(money2).toString()));
+        Assert.assertThat(money.add(money2).toString(), is("30.00 zł"));
         money2.add(money3);
     }
 
@@ -38,8 +38,8 @@ public class MoneyTest {
 
     @Test(expected=IllegalArgumentException.class)public void subtractionTest()
     {
-        Assert.assertThat("10.00 zł", is(money2.subtract(money).toString()));
-        Assert.assertThat("-10.00 zł", is(money.subtract(money2).toString()));
+        Assert.assertThat(money2.subtract(money).toString(), is("10.00 zł"));
+        Assert.assertThat(money.subtract(money2).toString(), is("-10.00 zł"));
         money.subtract(money3);
 
     }
@@ -47,6 +47,15 @@ public class MoneyTest {
     @Test(expected = NullPointerException.class)public void subtractionWithNull()
     {
         money.subtract(null);
+    }
+
+    @Test public void comparisonMethodsTest()
+    {
+        Assert.assertThat(money.greaterThan(money2), is(false));
+        Assert.assertThat(money.lessThan(money2), is(true));
+        Money tmp = new Money(30, "EUR");
+        Assert.assertThat(money3.lessOrEquals(tmp),is(true));
+        Assert.assertThat(money2.greaterThan(tmp), is(false));
     }
 
 
