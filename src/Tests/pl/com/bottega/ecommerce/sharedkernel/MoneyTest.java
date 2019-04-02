@@ -31,5 +31,10 @@ public class MoneyTest {
         money2.add(money3);
     }
 
+    @Test(expected = NullPointerException.class) public void additionWithNull()
+    {
+        money.add(null);
+    }
+
 
 }
