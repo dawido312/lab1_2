@@ -25,4 +25,11 @@ public class MoneyTest {
         Assert.assertThat("30.00 zł", is(tmp.toString()));
     }
 
+    @Test(expected = IllegalArgumentException.class) public void additionTest()
+    {
+        Assert.assertThat("30.00 zł", is(money.add(money2).toString()));
+        money2.add(money3);
+    }
+
+
 }
